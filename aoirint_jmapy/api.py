@@ -1,10 +1,11 @@
 import requests
 from typing import List, Dict, Any, Optional, Union, Literal
 from pydantic import BaseModel, parse_obj_as
+from . import __VERSION__ as VERSION
 
 def get_json(url) -> Dict[str, Any]:
   headers = {
-    'User-Agent': 'aoirint_jmapy 0.0.0',
+    'User-Agent': f'aoirint_jmapy {VERSION}',
   }
 
   res = requests.get(url, headers=headers)
