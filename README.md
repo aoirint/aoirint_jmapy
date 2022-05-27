@@ -18,7 +18,7 @@ pip3 install aoirint_jmapy
 ### 東京都 東京地方のデータを見る例
 
 ```python
-from aoirint_jmapy import JmaApi
+from aoirint_jmapy import JmaApi, Telops
 
 # UserAgentに含めるため、あなたのアプリケーション名、バージョンを設定することを推奨
 # UserAgentは次のようになります: MyWeatherApp 0.1.0 / aoirint_jmapy 20220527.4
@@ -51,6 +51,10 @@ print(overview_forecast.text)
 ### 週間天気概況
 overview_week = jmaApi.overview_week(area_id='130000')
 print(overview_week.text)
+
+# WeatherCodeを対応するテキストにする（Third party contentsの項を参照）
+weather_code = '101'
+print(Telops[weather_code][3]) # 晴時々曇
 ```
 
 ### area_idを調べる
