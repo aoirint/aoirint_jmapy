@@ -1,2 +1,3 @@
 include README.md
+include LICENSE
 recursive-include aoirint_jmapy/static *
