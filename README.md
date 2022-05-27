@@ -7,6 +7,7 @@ Unofficial JMA weather forecast API wrapper in Python
 2022-05-27時点のAPIに対応
 
 - 気象庁の天気予報ページ: <https://www.jma.go.jp/bosai/forecast/>
+- 気象庁ホームページ コンテンツの利用規約: <https://www.jma.go.jp/jma/kishou/info/coment.html>
 
 ## Install
 ```shell
@@ -96,6 +97,7 @@ print(area.centers['010300'])
 
 - `aoirint_jmapy/static/const_telops.json`
   - データの出典: 気象庁ホームページ <https://www.jma.go.jp/bosai/forecast/>
+  - 気象庁ホームページ コンテンツの利用規約: <https://www.jma.go.jp/jma/kishou/info/coment.html>
 
 ### Update const_telops.json
 
