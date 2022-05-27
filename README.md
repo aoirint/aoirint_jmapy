@@ -13,7 +13,8 @@ Unofficial JMA weather forecast API wrapper in Python
 pip3 install aoirint_jmapy
 ```
 
-## 東京都 東京地方のデータを見る例
+## Usage
+### 東京都 東京地方のデータを見る例
 
 ```python
 from aoirint_jmapy import JmaApi
@@ -42,7 +43,7 @@ overview_week = jmaApi.overview_week(area_id='130000')
 print(overview_week.text)
 ```
 
-## area_idを調べる
+### area_idを調べる
 
 ```python
 # エリアリスト
