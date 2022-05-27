@@ -10,6 +10,8 @@ Unofficial JMA weather forecast API wrapper in Python
 pip3 install aoirint_jmapy
 ```
 
+- 気象庁の天気予報ページ: <https://www.jma.go.jp/bosai/forecast/>
+
 ## 東京都 東京地方のデータを見る例
 
 ```python
