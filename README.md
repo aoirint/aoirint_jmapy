@@ -83,10 +83,10 @@ print(area.centers['010300'])
 - https://www.jma.go.jp/bosai/forecast/const/week_area.json
 - https://www.jma.go.jp/bosai/forecast/const/week_area05.json
 - https://www.jma.go.jp/bosai/forecast/const/week_area_name.json
-- https://www.jma.go.jp/bosai/forecast/data/overview_forecast/<ID>.json
-- https://www.jma.go.jp/bosai/forecast/data/overview_week/<ID>.json
-- https://www.jma.go.jp/bosai/forecast/data/forecast/<ID>json
-- https://www.jma.go.jp/bosai/warning/data/warning/<ID>json
+- https://www.jma.go.jp/bosai/forecast/data/overview_forecast/{area_id}.json
+- https://www.jma.go.jp/bosai/forecast/data/overview_week/{area_id}.json
+- https://www.jma.go.jp/bosai/forecast/data/forecast/{area_id}.json
+- https://www.jma.go.jp/bosai/warning/data/warning/{area_id}.json
 
 ## Development
 
