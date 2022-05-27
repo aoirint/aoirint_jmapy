@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p testdata
+
 wget https://www.jma.go.jp/bosai/common/const/area.json -O testdata/area.json
 wget https://www.jma.go.jp/bosai/forecast/const/forecast_area.json -O testdata/forecast_area.json
 wget https://www.jma.go.jp/bosai/forecast/const/en_amedas.json -O testdata/en_amedas.json
