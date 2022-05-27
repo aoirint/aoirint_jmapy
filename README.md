@@ -72,3 +72,7 @@ mypy aoirint_jmapy/
 
 pytest tests/
 ```
+
+### Release
+
+GitHub Releaseを作成するとGitHub Actionsにより自動でPyPIにリリースされる。
