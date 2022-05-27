@@ -20,7 +20,7 @@ pip3 install aoirint_jmapy
 from aoirint_jmapy import JmaApi
 
 # UserAgentに含めるため、あなたのアプリケーション名、バージョンを設定することを推奨
-# UserAgentは次のようになります: MyWeatherApp 0.1.0 / aoirint_jmapy 20220527.3
+# UserAgentは次のようになります: MyWeatherApp 0.1.0 / aoirint_jmapy 20220527.4
 # アプリケーションを一般に配布する場合、不具合等により不特定多数の端末から
 # 気象庁のサーバに負荷をかけることがないように、自分でキャッシュサーバを立てること等を推奨
 jmaApi = JmaApi(
