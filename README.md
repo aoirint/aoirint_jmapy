@@ -2,6 +2,10 @@
 
 Unofficial JMA weather forecast API wrapper in Python
 
+気象庁天気予報データの非公式Pythonラッパー
+
+2022-05-27時点のAPIに対応
+
 ```shell
 pip3 install aoirint_jmapy
 ```
