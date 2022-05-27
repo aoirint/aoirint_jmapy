@@ -88,6 +88,23 @@ print(area.centers['010300'])
 - https://www.jma.go.jp/bosai/forecast/data/forecast/{area_id}.json
 - https://www.jma.go.jp/bosai/warning/data/warning/{area_id}.json
 
+## Third party contents
+
+「晴」「曇後雨」などのテキストは、API中で`weatherCode`という数値IDで識別されます。
+この数値IDに対応するテキストはAPIから取得できず、JavaScriptコードとして埋め込まれています。
+利便性のため、この辞書をダンプしたものをライブラリに同梱し、コード中から参照できるようにしています。
+
+- `aoirint_jmapy/static/const_telops.json`
+  - データの出典: 気象庁ホームページ <https://www.jma.go.jp/bosai/forecast/>
+
+### Update const_telops.json
+
+開発者ツールで以下を実行、出力をコピーして貼り付けする。
+
+```js
+console.log(JSON.stringify(Forecast.Const.TELOPS))
+```
+
 ## Development
 
 ### Environment
