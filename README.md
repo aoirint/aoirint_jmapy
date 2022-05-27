@@ -105,6 +105,7 @@ print(area.centers['010300'])
 
 ### Update const_telops.json
 
+<https://www.jma.go.jp/bosai/forecast/>を開く。
 開発者ツールで以下を実行、出力をコピーして貼り付けする。
 
 ```js
