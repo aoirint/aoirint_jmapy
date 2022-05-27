@@ -90,7 +90,7 @@ print(area.centers['010300'])
 
 ## Development
 
-## Environment
+### Environment
 
 ```shell
 python3 -m venv venv
@@ -99,7 +99,7 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-## Lock dependencies
+### Lock dependencies
 
 ```shell
 pip3 install pip-tools
@@ -108,7 +108,7 @@ pip-compile requirements.in
 pip-compile requirements.test.in
 ```
 
-## Test
+### Test
 
 ```shell
 # Download some JMA API response for test
