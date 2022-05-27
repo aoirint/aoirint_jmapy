@@ -1,6 +1,6 @@
 # aoirint_jmapy
 
-Unofficial JMA weather forecast API wrapper in Python
+Unofficial JMA weather forecast data wrapper in Python
 
 気象庁天気予報データの非公式Pythonラッパー
 
