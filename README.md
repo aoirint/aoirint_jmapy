@@ -25,14 +25,14 @@ from aoirint_jmapy import JmaApi, Telops
 # アプリケーションを一般に配布する場合、不具合等により不特定多数の端末から
 # 気象庁のサーバに負荷をかけることがないように、自分でキャッシュサーバを立てること等を推奨
 # jma_url以下のパスを揃えると切り替えできる
-jmaApi = JmaApi(
+jma = JmaApi(
   jma_url='https://www.jma.go.jp',
   app_name='MyWeatherApp',
   app_version='0.1.0',
 )
 
 # 東京都
-forecast = jmaApi.forecast(area_id='130000')
+forecast = jma.forecast(area_id='130000')
 print(forecast)
 
 ## 東京地方
@@ -45,11 +45,11 @@ print(forecast[0].timeSeries[0])
 print(forecast[0].timeSeries[1])
 
 ### 3日間天気概況
-overview_forecast = jmaApi.overview_forecast(area_id='130000')
+overview_forecast = jma.overview_forecast(area_id='130000')
 print(overview_forecast.text)
 
 ### 週間天気概況
-overview_week = jmaApi.overview_week(area_id='130000')
+overview_week = jma.overview_week(area_id='130000')
 print(overview_week.text)
 
 # WeatherCodeを対応するテキストにする（Third party contentsの項を参照）
@@ -63,7 +63,7 @@ print(Telops[weather_code][3]) # 晴時々曇
 
 ```python
 # エリアリスト
-area = jmaApi.area()
+area = jma.area()
 
 ## センターリスト（気象台リスト）
 print(area.centers)
