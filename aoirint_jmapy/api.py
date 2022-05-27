@@ -3,17 +3,6 @@ from typing import List, Dict, Any, Optional, Union, Literal
 from pydantic import BaseModel, parse_obj_as
 from . import __VERSION__ as VERSION
 
-def get_json(url) -> Dict[str, Any]:
-  headers = {
-    'User-Agent': f'aoirint_jmapy {VERSION}',
-  }
-
-  res = requests.get(url, headers=headers)
-  res.raise_for_status()
-
-  data = res.json()
-  return data
-
 # Area
 class AreaDataCenter(BaseModel):
   name: str
@@ -296,12 +285,41 @@ class WarningData(BaseModel):
   timeSeries: List[WarningDataTimeSeriesItem]
 
 class JmaApi:
+  def __init__(self,
+    app_name=None,
+    app_version=None,
+    useragent=None,
+  ):
+    self.app_name = app_name
+    self.app_version = app_version
+    self.useragent = useragent
+
+  def get_json(self, url) -> Dict[str, Any]:
+    useragent = f'aoirint_jmapy {VERSION}'
+
+    if self.useragent is not None:
+      useragent = self.useragent
+    elif self.app_name is not None and self.app_version:
+      useragent = f'{self.app_name} {self.app_version} / {useragent}'
+    elif self.app_name is not None:
+      useragent = f'{self.app_name} / {useragent}'
+
+    headers = {
+      'User-Agent': useragent,
+    }
+
+    res = requests.get(url, headers=headers)
+    res.raise_for_status()
+
+    data = res.json()
+    return data
+
   def area(self,
     url='https://www.jma.go.jp/bosai/common/const/area.json',
     data=None,
   ) -> AreaData:
     if data is None:
-      data = get_json(url)
+      data = self.get_json(url)
     area = parse_obj_as(AreaData, data)
     return area
 
@@ -310,7 +328,7 @@ class JmaApi:
     data=None,
   ) -> ForecastAreaData:
     if data is None:
-      data = get_json(url)
+      data = self.get_json(url)
     forecast_area_data = parse_obj_as(ForecastAreaData, data)
     return forecast_area_data
 
@@ -319,7 +337,7 @@ class JmaApi:
     data=None,
   ) -> EnAmedasData:
     if data is None:
-      data = get_json(url)
+      data = self.get_json(url)
     en_amedas_data = parse_obj_as(EnAmedasData, data)
     return en_amedas_data
 
@@ -328,7 +346,7 @@ class JmaApi:
     data=None,
   ) -> AnniversaryData:
     if data is None:
-      data = get_json(url)
+      data = self.get_json(url)
     anniversary_data = parse_obj_as(AnniversaryData, data)
     return anniversary_data
 
@@ -337,7 +355,7 @@ class JmaApi:
     data=None,
   ) -> WeekAreaData:
     if data is None:
-      data = get_json(url)
+      data = self.get_json(url)
     week_area_data = parse_obj_as(WeekAreaData, data)
     return week_area_data
 
@@ -346,7 +364,7 @@ class JmaApi:
     data=None,
   ) -> WeekArea05Data:
     if data is None:
-      data = get_json(url)
+      data = self.get_json(url)
     week_area05_data = parse_obj_as(WeekArea05Data, data)
     return week_area05_data
 
@@ -355,7 +373,7 @@ class JmaApi:
     data=None,
   ) -> WeekAreaNameData:
     if data is None:
-      data = get_json(url)
+      data = self.get_json(url)
     week_area_name_data = parse_obj_as(WeekAreaNameData, data)
     return week_area_name_data
 
@@ -369,7 +387,7 @@ class JmaApi:
       url = base_url.format(**{
         'area_id': area_id,
       })
-      data = get_json(url)
+      data = self.get_json(url)
     overview_forecast_data = parse_obj_as(OverviewForecastData, data)
     return overview_forecast_data
 
@@ -383,7 +401,7 @@ class JmaApi:
       url = base_url.format(**{
         'area_id': area_id,
       })
-      data = get_json(url)
+      data = self.get_json(url)
     overview_week_data = parse_obj_as(OverviewWeekData, data)
     return overview_week_data
 
@@ -397,7 +415,7 @@ class JmaApi:
       url = base_url.format(**{
         'area_id': area_id,
       })
-      data = get_json(url)
+      data = self.get_json(url)
     forecast_data = parse_obj_as(ForecastData, data)
     return forecast_data
 
@@ -411,6 +429,6 @@ class JmaApi:
       url = base_url.format(**{
         'area_id': area_id,
       })
-      data = get_json(url)
+      data = self.get_json(url)
     warning_data = parse_obj_as(WarningData, data)
     return warning_data
