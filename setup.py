@@ -14,7 +14,7 @@ install_requires: List[str] = [
 ]
 
 setup(
-    name='LIBRARY_NAME',
+    name='aoirint_jmapy',
     version=VERSION, # '0.1.0-alpha', # == 0.1.0-alpha0 == 0.1.0a0
     # license='MIT',
 
