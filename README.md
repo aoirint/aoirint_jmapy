@@ -35,7 +35,7 @@ print(overview_week.text)
 
 ## area_idを調べる
 
-```
+```python
 # エリアリスト
 area = JmaApi().area()
 
