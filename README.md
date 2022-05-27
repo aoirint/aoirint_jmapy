@@ -21,6 +21,7 @@ from aoirint_jmapy import JmaApi
 
 # UserAgentに含めるため、あなたのアプリケーション名、バージョンを設定することを推奨
 # UserAgentは次のようになります: MyWeatherApp 0.1.0 / aoirint_jmapy 20220527.3
+# アプリケーションを一般に配布する場合、不特定多数の端末から気象庁のサーバに負荷をかけないように、自分でキャッシュサーバを立てることを推奨
 jmaApi = JmaApi(
   app_name='MyWeatherApp',
   app_version='0.1.0',
