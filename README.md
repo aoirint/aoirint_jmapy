@@ -71,6 +71,8 @@ pip3 install -r requirements.txt
 ## Lock dependencies
 
 ```shell
+pip3 install pip-tools
+
 pip-compile requirements.in
 pip-compile requirements.test.in
 ```
