@@ -51,7 +51,7 @@ print(area.centers)
 #### 上川・留萌地方: area_id=012000
 print(area.centers['010100'])
 
-### 関東甲信地方: centerid=010300
+### 関東甲信地方: center_id=010300
 #### 東京都: area_id=130000
 #### 神奈川県: area_id=140000
 print(area.centers['010300'])
