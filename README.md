@@ -45,6 +45,8 @@ print(overview_week.text)
 
 ### area_idを調べる
 
+- ※ 単一の地点のみでいい場合、気象庁の天気予報ページから手動で選択してURLから抽出する方が簡単
+
 ```python
 # エリアリスト
 area = jmaApi.area()
