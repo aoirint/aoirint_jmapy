@@ -24,6 +24,7 @@ from aoirint_jmapy import JmaApi
 # アプリケーションを一般に配布する場合、不具合等により不特定多数の端末から
 # 気象庁のサーバに負荷をかけることがないように、自分でキャッシュサーバを立てること等を推奨
 jmaApi = JmaApi(
+  jma_url='https://www.jma.go.jp',
   app_name='MyWeatherApp',
   app_version='0.1.0',
 )

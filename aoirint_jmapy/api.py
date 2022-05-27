@@ -1,6 +1,8 @@
 import requests
 from typing import List, Dict, Any, Optional, Union, Literal
 from pydantic import BaseModel, parse_obj_as
+from urllib.parse import urljoin
+from dataclasses import dataclass
 from . import __VERSION__ as VERSION
 
 # Area
@@ -284,15 +286,12 @@ class WarningData(BaseModel):
   areaTypes: List[WarningDataAreaType]
   timeSeries: List[WarningDataTimeSeriesItem]
 
+@dataclass
 class JmaApi:
-  def __init__(self,
-    app_name=None,
-    app_version=None,
-    useragent=None,
-  ):
-    self.app_name = app_name
-    self.app_version = app_version
-    self.useragent = useragent
+  jma_url: str = 'https://www.jma.go.jp'
+  app_name: Optional[str] = None
+  app_version: Optional[str] = None
+  useragent: Optional[str] = None
 
   def get_json(self, url) -> Dict[str, Any]:
     useragent = f'aoirint_jmapy {VERSION}'
@@ -314,76 +313,124 @@ class JmaApi:
     data = res.json()
     return data
 
+  @property
+  def area_url(self):
+    return urljoin(self.jma_url, 'bosai/common/const/area.json')
+
   def area(self,
-    url='https://www.jma.go.jp/bosai/common/const/area.json',
+    url: str=None,
     data=None,
   ) -> AreaData:
     if data is None:
+      if url is None:
+        url = self.area_url
       data = self.get_json(url)
     area = parse_obj_as(AreaData, data)
     return area
 
+  @property
+  def forecast_area_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/const/forecast_area.json')
+
   def forecast_area(self,
-    url='https://www.jma.go.jp/bosai/forecast/const/forecast_area.json',
+    url: str=None,
     data=None,
   ) -> ForecastAreaData:
     if data is None:
+      if url is None:
+        url = self.forecast_area_url
       data = self.get_json(url)
     forecast_area_data = parse_obj_as(ForecastAreaData, data)
     return forecast_area_data
 
+  @property
+  def en_amedas_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/const/en_amedas.json')
+
   def en_amedas(self,
-    url='https://www.jma.go.jp/bosai/forecast/const/en_amedas.json',
+    url: str=None,
     data=None,
   ) -> EnAmedasData:
     if data is None:
+      if url is None:
+        url = self.en_amedas_url
       data = self.get_json(url)
     en_amedas_data = parse_obj_as(EnAmedasData, data)
     return en_amedas_data
 
+  @property
+  def anniversary_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/const/anniversary.json')
+
   def anniversary(self,
-    url='https://www.jma.go.jp/bosai/forecast/const/anniversary.json',
+    url: str=None,
     data=None,
   ) -> AnniversaryData:
     if data is None:
+      if url is None:
+        url = self.anniversary_url
       data = self.get_json(url)
     anniversary_data = parse_obj_as(AnniversaryData, data)
     return anniversary_data
 
+  @property
+  def week_area_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/const/week_area.json')
+
   def week_area(self,
-    url='https://www.jma.go.jp/bosai/forecast/const/week_area.json',
+    url: str=None,
     data=None,
   ) -> WeekAreaData:
     if data is None:
+      if url is None:
+        url = self.week_area_url
       data = self.get_json(url)
     week_area_data = parse_obj_as(WeekAreaData, data)
     return week_area_data
 
+  @property
+  def week_area05_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/const/week_area05.json')
+
   def week_area05(self,
-    url='https://www.jma.go.jp/bosai/forecast/const/week_area05.json',
+    url: str=None,
     data=None,
   ) -> WeekArea05Data:
     if data is None:
+      if url is None:
+        url = self.week_area05_url
       data = self.get_json(url)
     week_area05_data = parse_obj_as(WeekArea05Data, data)
     return week_area05_data
 
+  @property
+  def week_area_name_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/const/week_area_name.json')
+
   def week_area_name(self,
-    url='https://www.jma.go.jp/bosai/forecast/const/week_area_name.json',
+    url: str=None,
     data=None,
   ) -> WeekAreaNameData:
     if data is None:
+      if url is None:
+        url = self.week_area_name_url
       data = self.get_json(url)
     week_area_name_data = parse_obj_as(WeekAreaNameData, data)
     return week_area_name_data
 
+  @property
+  def overview_forecast_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/data/overview_forecast/{area_id}.json')
+
   def overview_forecast(self,
     area_id: str=None,
-    base_url='https://www.jma.go.jp/bosai/forecast/data/overview_forecast/{area_id}.json',
+    base_url: str=None,
     data=None,
   ) -> OverviewForecastData:
     if data is None:
       assert area_id is not None
+      if base_url is None:
+        base_url = self.overview_forecast_url
       url = base_url.format(**{
         'area_id': area_id,
       })
@@ -391,13 +438,19 @@ class JmaApi:
     overview_forecast_data = parse_obj_as(OverviewForecastData, data)
     return overview_forecast_data
 
+  @property
+  def overview_week_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/data/overview_week/{area_id}.json')
+
   def overview_week(self,
     area_id: str=None,
-    base_url='https://www.jma.go.jp/bosai/forecast/data/overview_week/{area_id}.json',
+    base_url: str=None,
     data=None,
   ) -> OverviewWeekData:
     if data is None:
       assert area_id is not None
+      if base_url is None:
+        base_url = self.overview_forecast_url
       url = base_url.format(**{
         'area_id': area_id,
       })
@@ -405,13 +458,19 @@ class JmaApi:
     overview_week_data = parse_obj_as(OverviewWeekData, data)
     return overview_week_data
 
+  @property
+  def forecast_url(self):
+    return urljoin(self.jma_url, 'bosai/forecast/data/forecast/{area_id}.json')
+
   def forecast(self,
     area_id: str=None,
-    base_url='https://www.jma.go.jp/bosai/forecast/data/forecast/{area_id}.json',
+    base_url: str=None,
     data=None,
   ) -> ForecastData:
     if data is None:
       assert area_id is not None
+      if base_url is None:
+        base_url = self.forecast_url
       url = base_url.format(**{
         'area_id': area_id,
       })
@@ -419,13 +478,19 @@ class JmaApi:
     forecast_data = parse_obj_as(ForecastData, data)
     return forecast_data
 
+  @property
+  def warning_url(self):
+    return urljoin(self.jma_url, 'bosai/warning/data/warning/{area_id}.json')
+
   def warning(self,
     area_id: str=None,
-    base_url='https://www.jma.go.jp/bosai/warning/data/warning/{area_id}.json',
+    base_url: str=None,
     data=None,
   ) -> WarningData:
     if data is None:
       assert area_id is not None
+      if base_url is None:
+        base_url = self.warning_url
       url = base_url.format(**{
         'area_id': area_id,
       })
