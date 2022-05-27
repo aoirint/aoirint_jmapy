@@ -13,3 +13,14 @@ from aoirint_jmapy import JmaApi
 forecast = JmaApi().forecast(area_id='130000')
 print(forecast)
 ```
+
+## Development
+
+```shell
+python3 -m venv venv
+pip3 install -r requirements.test.txt
+
+mypy aoirint_jmapy/
+
+pytest tests/
+```
