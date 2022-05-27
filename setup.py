@@ -35,7 +35,7 @@ setup(
     author_email='aoirint@gmail.com',
 
     url='https://github.com/aoirint/aoirint_jmapy',
-    description='Unofficial JMA weather forecast API client',
+    description='Unofficial JMA weather forecast API wrapper in Python',
 
     long_description=open('README.md', 'r').read(),
     long_description_content_type='text/markdown',
