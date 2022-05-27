@@ -23,6 +23,7 @@ from aoirint_jmapy import JmaApi
 # UserAgentは次のようになります: MyWeatherApp 0.1.0 / aoirint_jmapy 20220527.4
 # アプリケーションを一般に配布する場合、不具合等により不特定多数の端末から
 # 気象庁のサーバに負荷をかけることがないように、自分でキャッシュサーバを立てること等を推奨
+# jma_url以下のパスを揃えると切り替えできる
 jmaApi = JmaApi(
   jma_url='https://www.jma.go.jp',
   app_name='MyWeatherApp',
@@ -72,6 +73,20 @@ print(area.centers['010100'])
 #### 神奈川県: area_id=140000
 print(area.centers['010300'])
 ```
+
+### Supported data url list
+
+- https://www.jma.go.jp/bosai/common/const/area.json
+- https://www.jma.go.jp/bosai/forecast/const/forecast_area.json
+- https://www.jma.go.jp/bosai/forecast/const/en_amedas.json
+- https://www.jma.go.jp/bosai/forecast/const/anniversary.json
+- https://www.jma.go.jp/bosai/forecast/const/week_area.json
+- https://www.jma.go.jp/bosai/forecast/const/week_area05.json
+- https://www.jma.go.jp/bosai/forecast/const/week_area_name.json
+- https://www.jma.go.jp/bosai/forecast/data/overview_forecast/<ID>.json
+- https://www.jma.go.jp/bosai/forecast/data/overview_week/<ID>.json
+- https://www.jma.go.jp/bosai/forecast/data/forecast/<ID>json
+- https://www.jma.go.jp/bosai/warning/data/warning/<ID>json
 
 ## Development
 
