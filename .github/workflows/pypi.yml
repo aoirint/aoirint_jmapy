@@ -1,0 +1,39 @@
+name: Publish a package to PyPI
+
+on:
+  release:
+    types:
+      - created
+
+env:
+  VERSION: ${{ github.event.release.tag_name != '' && github.event.release.tag_name || '0.0.0' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install Dependencies
+        run: |
+            pip3 install -r requirements.txt
+            pip3 install wheel
+
+      - name: Replace version
+        run: |
+          sed -i "s/__VERSION__ = '0.0.0'/__VERSION__ = '${{ env.VERSION }}'/" aoirint_jmapy/__init__.py
+
+      - name: Build Package
+        run: python3 setup.py sdist bdist_wheel
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}

@@ -1,0 +1,7 @@
+-r requirements.in
+
+pytest
+mypy
+types-requests
+types-docutils
+lxml-stubs
