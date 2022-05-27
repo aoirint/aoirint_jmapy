@@ -59,6 +59,8 @@ print(area.centers['010300'])
 
 ## Development
 
+## Environment
+
 ```shell
 # Download some JMA API response for test
 ./get_testdata.sh
@@ -66,6 +68,19 @@ print(area.centers['010300'])
 python3 -m venv venv
 source venv/bin/activate
 
+pip3 install -r requirements.txt
+```
+
+## Lock dependencies
+
+```shell
+pip-compile requirements.in
+pip-compile requirements.test.in
+```
+
+## Test
+
+```shell
 pip3 install -r requirements.test.txt
 
 mypy aoirint_jmapy/
