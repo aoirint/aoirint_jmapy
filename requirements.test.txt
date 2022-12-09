@@ -6,7 +6,7 @@
 #
 attrs==21.4.0
     # via pytest
-certifi==2022.5.18.1
+certifi==2022.12.7
     # via requests
 charset-normalizer==2.0.12
     # via requests
@@ -35,9 +35,7 @@ pytest==7.1.2
 requests==2.27.1
     # via -r requirements.in
 tomli==2.0.1
-    # via
-    #   mypy
-    #   pytest
+    # via pytest
 types-docutils==0.18.3
     # via -r requirements.test.in
 types-requests==2.27.29
