@@ -10,7 +10,7 @@ charset-normalizer==2.0.12
     # via requests
 idna==3.7
     # via requests
-pydantic==1.9.1
+pydantic==1.10.13
     # via -r requirements.in
 requests==2.32.0
     # via -r requirements.in
