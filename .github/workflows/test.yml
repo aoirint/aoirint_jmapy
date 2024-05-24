@@ -1,0 +1,49 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python_version: "3.8"
+          - python_version: "3.9"
+          - python_version: "3.10"
+          - python_version: "3.11"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python_version }}"
+          cache: "pip"
+          cache-dependency-path: '**/requirements.test.txt'
+
+      - name: Install Python dependencies
+        shell: bash
+        run: pip install -r requirements.test.txt
+
+      - name: Cache Test data
+        id: cache-testdata
+        uses: actions/cache@v4
+        with:
+          path: testdata/
+          key: ${{ runner.os }}-testdata-v1
+
+      - name: Download Test data
+        if: steps.cache-testdata.outputs.cache-hit != 'true'
+        shell: bash
+        run: ./get_testdata.sh
+
+      - name: Run test
+        shell: bash
+        run: pytest ./tests
