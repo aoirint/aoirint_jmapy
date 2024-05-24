@@ -1,6 +1,6 @@
 import requests
 from typing import List, Dict, Any, Optional, Union, Literal
-from pydantic import BaseModel, parse_obj_as
+from pydantic import BaseModel, TypeAdapter
 from urllib.parse import urljoin
 from dataclasses import dataclass
 from . import __VERSION__ as VERSION
@@ -324,7 +324,7 @@ class JmaApi:
       if url is None:
         url = self.area_url
       data = self.get_json(url)
-    area = parse_obj_as(AreaData, data)
+    area = AreaData.model_validate(data)
     return area
 
   @property
@@ -339,7 +339,7 @@ class JmaApi:
       if url is None:
         url = self.forecast_area_url
       data = self.get_json(url)
-    forecast_area_data = parse_obj_as(ForecastAreaData, data)
+    forecast_area_data = TypeAdapter(ForecastAreaData).validate_python(data)
     return forecast_area_data
 
   @property
@@ -354,7 +354,7 @@ class JmaApi:
       if url is None:
         url = self.en_amedas_url
       data = self.get_json(url)
-    en_amedas_data = parse_obj_as(EnAmedasData, data)
+    en_amedas_data = TypeAdapter(EnAmedasData).validate_python(data)
     return en_amedas_data
 
   @property
@@ -369,7 +369,7 @@ class JmaApi:
       if url is None:
         url = self.anniversary_url
       data = self.get_json(url)
-    anniversary_data = parse_obj_as(AnniversaryData, data)
+    anniversary_data = TypeAdapter(AnniversaryData).validate_python(data)
     return anniversary_data
 
   @property
@@ -384,7 +384,7 @@ class JmaApi:
       if url is None:
         url = self.week_area_url
       data = self.get_json(url)
-    week_area_data = parse_obj_as(WeekAreaData, data)
+    week_area_data = TypeAdapter(WeekAreaData).validate_python(data)
     return week_area_data
 
   @property
@@ -399,7 +399,7 @@ class JmaApi:
       if url is None:
         url = self.week_area05_url
       data = self.get_json(url)
-    week_area05_data = parse_obj_as(WeekArea05Data, data)
+    week_area05_data = TypeAdapter(WeekArea05Data).validate_python(data)
     return week_area05_data
 
   @property
@@ -414,7 +414,7 @@ class JmaApi:
       if url is None:
         url = self.week_area_name_url
       data = self.get_json(url)
-    week_area_name_data = parse_obj_as(WeekAreaNameData, data)
+    week_area_name_data = TypeAdapter(WeekAreaNameData).validate_python(data)
     return week_area_name_data
 
   @property
@@ -434,7 +434,7 @@ class JmaApi:
         'area_id': area_id,
       })
       data = self.get_json(url)
-    overview_forecast_data = parse_obj_as(OverviewForecastData, data)
+    overview_forecast_data = OverviewForecastData.model_validate(data)
     return overview_forecast_data
 
   @property
@@ -454,7 +454,7 @@ class JmaApi:
         'area_id': area_id,
       })
       data = self.get_json(url)
-    overview_week_data = parse_obj_as(OverviewWeekData, data)
+    overview_week_data = OverviewWeekData.model_validate(data)
     return overview_week_data
 
   @property
@@ -474,7 +474,7 @@ class JmaApi:
         'area_id': area_id,
       })
       data = self.get_json(url)
-    forecast_data = parse_obj_as(ForecastData, data)
+    forecast_data = TypeAdapter(ForecastData).validate_python(data)
     return forecast_data
 
   @property
@@ -494,5 +494,5 @@ class JmaApi:
         'area_id': area_id,
       })
       data = self.get_json(url)
-    warning_data = parse_obj_as(WarningData, data)
+    warning_data = WarningData.model_validate(data)
     return warning_data
