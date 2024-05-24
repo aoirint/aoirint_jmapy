@@ -16,7 +16,7 @@ class AreaDataClass20s(BaseModel):
   name: str
   enName: str
   kana: str
-  parent: Optional[str]
+  parent: Optional[str] = None
 
 class AreaData(BaseModel):
   centers: Dict[str, AreaDataCenter]
@@ -172,7 +172,7 @@ class WarningDataTimeSeriesItemAreaWarningLevelLightningContinueLevel(BaseModel)
 
 # 風危険度
 class WarningDataTimeSeriesItemAreaWarningLevelWindLocalArea(BaseModel):
-  localAreaName: Optional[str]
+  localAreaName: Optional[str] = None
   values: List[str]
 
 class WarningDataTimeSeriesItemAreaWarningLevelWind(BaseModel):
@@ -188,7 +188,7 @@ class WarningDataTimeSeriesItemAreaWarningLevelWindContinueLevel(BaseModel):
 
 # 波危険度
 class WarningDataTimeSeriesItemAreaWarningLevelWaveLocalArea(BaseModel):
-  localAreaName: Optional[str]
+  localAreaName: Optional[str] = None
   values: List[str]
 
 class WarningDataTimeSeriesItemAreaWarningLevelWave(BaseModel):
@@ -204,12 +204,12 @@ class WarningDataTimeSeriesItemAreaWarningLevelWaveContinueLevel(BaseModel):
 
 # 風向
 class WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirectionLocalAreaWindDirection(BaseModel):
-  condition: Optional[str]
-  value: Optional[str]
+  condition: Optional[str] = None
+  value: Optional[str] = None
 
 class WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirectionLocalArea(BaseModel):
-  localAreaName: Optional[str]
   windDirections: List[WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirectionLocalAreaWindDirection]
+  localAreaName: Optional[str] = None
 
 class WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirection(BaseModel):
   type: Literal['風向']
@@ -217,7 +217,7 @@ class WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirection(BaseModel):
 
 # 最大風速
 class WarningDataTimeSeriesItemAreaWarningWindPropertyMaxWindSpeedLocalArea(BaseModel):
-  localAreaName: Optional[str]
+  localAreaName: Optional[str] = None
   values: List[str]
 
 class WarningDataTimeSeriesItemAreaWarningWindPropertyMaxWindSpeed(BaseModel):
@@ -226,7 +226,7 @@ class WarningDataTimeSeriesItemAreaWarningWindPropertyMaxWindSpeed(BaseModel):
 
 # 波危険度
 class WarningDataTimeSeriesItemAreaWarningWindPropertyWaveLocalArea(BaseModel):
-  localAreaName: Optional[str]
+  localAreaName: Optional[str] = None
   values: List[str]
 
 class WarningDataTimeSeriesItemAreaWarningWindPropertyWave(BaseModel):
@@ -235,7 +235,7 @@ class WarningDataTimeSeriesItemAreaWarningWindPropertyWave(BaseModel):
 
 # 波高
 class WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeightLocalArea(BaseModel):
-  localAreaName: Optional[str]
+  localAreaName: Optional[str] = None
   values: List[str]
 
 class WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight(BaseModel):
@@ -245,24 +245,24 @@ class WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight(BaseModel):
 # class WarningDataTimeSeriesItemAreaWarning(BaseModel):
 #   code: str
 #   levels: List[Union[WarningDataTimeSeriesItemAreaWarningLevelLightning, WarningDataTimeSeriesItemAreaWarningLevelWind, WarningDataTimeSeriesItemAreaWarningLevelWave]]
-#   continueLevels: Optional[List[Union[WarningDataTimeSeriesItemAreaWarningLevelLightningContinueLevel, WarningDataTimeSeriesItemAreaWarningLevelWindContinueLevel, WarningDataTimeSeriesItemAreaWarningLevelWaveContinueLevel]]]
-#   properties: Optional[List[Union[WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirection, WarningDataTimeSeriesItemAreaWarningWindPropertyMaxWindSpeed, WarningDataTimeSeriesItemAreaWarningWindPropertyWave, WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight]]]
+#   continueLevels: Optional[List[Union[WarningDataTimeSeriesItemAreaWarningLevelLightningContinueLevel, WarningDataTimeSeriesItemAreaWarningLevelWindContinueLevel, WarningDataTimeSeriesItemAreaWarningLevelWaveContinueLevel]]] = None
+#   properties: Optional[List[Union[WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirection, WarningDataTimeSeriesItemAreaWarningWindPropertyMaxWindSpeed, WarningDataTimeSeriesItemAreaWarningWindPropertyWave, WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight]]] = None
 
 class WarningDataTimeSeriesItemAreaWarningLightning(BaseModel):
   code: str
   levels: List[WarningDataTimeSeriesItemAreaWarningLevelLightning]
-  continueLevels: Optional[List[WarningDataTimeSeriesItemAreaWarningLevelLightningContinueLevel]]
+  continueLevels: Optional[List[WarningDataTimeSeriesItemAreaWarningLevelLightningContinueLevel]] = None
 
 class WarningDataTimeSeriesItemAreaWarningWind(BaseModel):
   code: str
   levels: List[WarningDataTimeSeriesItemAreaWarningLevelWind]
-  continueLevels: Optional[List[WarningDataTimeSeriesItemAreaWarningLevelWindContinueLevel]]
-  properties: Optional[List[Union[WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirection, WarningDataTimeSeriesItemAreaWarningWindPropertyMaxWindSpeed]]]
+  continueLevels: Optional[List[WarningDataTimeSeriesItemAreaWarningLevelWindContinueLevel]] = None
+  properties: Optional[List[Union[WarningDataTimeSeriesItemAreaWarningWindPropertyWindDirection, WarningDataTimeSeriesItemAreaWarningWindPropertyMaxWindSpeed]]] = None
 
 class WarningDataTimeSeriesItemAreaWarningWave(BaseModel):
   code: str
   levels: List[WarningDataTimeSeriesItemAreaWarningLevelWave]
-  properties: Optional[List[WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight]]
+  properties: Optional[List[WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight]] = None
 
 WarningDataTimeSeriesItemAreaWarning = Union[WarningDataTimeSeriesItemAreaWarningWind, WarningDataTimeSeriesItemAreaWarningLightning, WarningDataTimeSeriesItemAreaWarningWave]
 
