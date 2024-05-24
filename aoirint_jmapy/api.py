@@ -262,7 +262,7 @@ class WarningDataTimeSeriesItemAreaWarningWind(BaseModel):
 class WarningDataTimeSeriesItemAreaWarningWave(BaseModel):
   code: str
   levels: List[WarningDataTimeSeriesItemAreaWarningLevelWave]
-  properties: Optional[List[Union[WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight]]]
+  properties: Optional[List[WarningDataTimeSeriesItemAreaWarningWindPropertyWaveHeight]]
 
 WarningDataTimeSeriesItemAreaWarning = Union[WarningDataTimeSeriesItemAreaWarningWind, WarningDataTimeSeriesItemAreaWarningLightning, WarningDataTimeSeriesItemAreaWarningWave]
 
