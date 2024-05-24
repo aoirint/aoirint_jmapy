@@ -41,6 +41,7 @@ jobs:
 
       - name: Download Test data
         if: steps.cache-testdata.outputs.cache-hit != 'true'
+        shell: bash
         run: ./get_testdata.sh
 
       - name: Run test
