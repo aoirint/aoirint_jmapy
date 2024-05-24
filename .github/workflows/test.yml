@@ -39,6 +39,6 @@ jobs:
         if: steps.cache-testdata.outputs.cache-hit != "true"
         run: ./get_testdata.sh
 
-      - name: Run lint
+      - name: Run test
         shell: bash
         run: pytest ./tests
