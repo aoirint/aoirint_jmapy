@@ -10,7 +10,6 @@ class AreaDataCenter(BaseModel):
   name: str
   enName: str
   officeName: str
-  parent: Optional[str]
   children: List[str]
 
 class AreaDataClass20s(BaseModel):
