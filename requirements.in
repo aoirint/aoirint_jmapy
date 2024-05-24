@@ -1,2 +1,2 @@
 requests
-pydantic>=2
+pydantic>=2<3
