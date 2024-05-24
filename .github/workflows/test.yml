@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: "${{ matrix.python_version }}"
           cache: "pip"
-          cache-dependency-path: '**/requirements-test.txt'
+          cache-dependency-path: '**/requirements.test.txt'
 
       - name: Cache Test data
         id: cache-testdata
