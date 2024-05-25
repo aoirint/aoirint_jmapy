@@ -18,9 +18,17 @@ class AreaDataClass20s(BaseModel):
   kana: str
   parent: Optional[str] = None
 
+class AreaDataOffice(BaseModel):
+  name: str
+  enName: str
+  officeName: str
+  children: List[str]
+  parent: Optional[str] = None
+
 class AreaData(BaseModel):
   centers: Dict[str, AreaDataCenter]
   class20s: Dict[str, AreaDataClass20s]
+  offices: Dict[str, AreaDataOffice]
 
 # Forecast Area
 class ForecastAreaDataValueItem(BaseModel):
