@@ -2,8 +2,6 @@ import sys
 import os
 import json
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-
 from aoirint_jmapy import JmaApi
 
 def test_area():
