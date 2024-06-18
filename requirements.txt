@@ -23,5 +23,5 @@ typing-extensions==4.12.0
     #   annotated-types
     #   pydantic
     #   pydantic-core
-urllib3==2.2.1
+urllib3==2.2.2
     # via requests
